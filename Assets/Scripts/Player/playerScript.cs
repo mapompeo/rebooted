@@ -29,8 +29,9 @@ public class playerScript : MonoBehaviour
     }
     
     
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        Debug.Log("Player Collided");
     }
 }
