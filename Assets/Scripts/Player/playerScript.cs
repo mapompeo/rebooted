@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement; // 1. OBRIGATÓRIO pra mudar de cena
 
 public class playerScript : MonoBehaviour
 {
@@ -7,22 +8,27 @@ public class playerScript : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     
     [Header("Verificação de Chão")]
-    [SerializeField] private Transform groundCheck; // O objeto vazio que fica no pé
-    [SerializeField] private LayerMask groundLayer; // O que é considerado "Chão"
-    
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
+
+    [Header("Efeitos Visuais")]
+    [SerializeField] private FlashEffect flashEffectScript; 
+
     private Rigidbody2D _rb2D;
-    private bool _isGrounded; // Variável para saber se pode pular
+    private SpriteRenderer _spriteRenderer;
+    private bool _isGrounded;
+    private Vector3 _posicaoInicial; 
 
     private void Start()
     {
         _rb2D = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _posicaoInicial = transform.position;
     }
 
     private void Update()
     {
-        // Verifica se existe chão num raio de 0.2 unidades na posição do  groundCheck
         _isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
-
         Movimentation();
     }
 
@@ -31,25 +37,43 @@ public class playerScript : MonoBehaviour
         float moveInput = Input.GetAxisRaw("Horizontal");
         _rb2D.linearVelocity = new Vector2(moveInput * moveSpeed, _rb2D.linearVelocity.y);
 
-        // Adicionei o "&& _isGrounded" aqui
+        if (moveInput > 0) _spriteRenderer.flipX = false;
+        else if (moveInput < 0) _spriteRenderer.flipX = true;
+
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && _isGrounded)
         {
             _rb2D.linearVelocity = new Vector2(_rb2D.linearVelocity.x, jumpSpeed);
         }
     }
     
-    // Essa função desenha uma bolinha vermelha na cena pra você ver onde está o sensor
     private void OnDrawGizmos()
     {
         if (groundCheck != null)
         {
-            Gizmos.color = Color.red;
+            Gizmos.color = Color.red; 
             Gizmos.DrawWireSphere(groundCheck.position, 0.2f);
         }
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Player Collided");
+        // Lógica de Morte (Volta pro início)
+        if (collision.CompareTag("Kill"))
+        {
+            if (flashEffectScript != null)
+            {
+                flashEffectScript.TriggerFlash();
+            }
+            transform.position = _posicaoInicial;
+            _rb2D.linearVelocity = Vector2.zero; 
+        }
+        // 2. Lógica de Próxima Fase (Vai pra frente)
+        else if (collision.CompareTag("NextLevel"))
+        {
+            // Pega o número da cena atual e soma 1.
+            // Ex: Se está na cena 0, carrega a cena 1.
+            int proximaCena = SceneManager.GetActiveScene().buildIndex + 1;
+            SceneManager.LoadScene(proximaCena);
+        }
     }
 }
