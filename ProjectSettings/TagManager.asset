@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Kill
   - NextLevel
+  - Wind
   layers:
   - Default
   - TransparentFX
