@@ -7,8 +7,8 @@ public class FanTimer : MonoBehaviour
     [SerializeField] private bool sempreLigado = false; 
 
     [Header("Configurações de Ritmo")]
-    [SerializeField] private float tempoTroca = 2f;    // Tempo que fica ligado/desligado de fato
-    [SerializeField] private float tempoAntecipacao = 0.5f; // Tempo de aviso (animação antes do vento)
+    [SerializeField] private float tempoTroca = 2f;    
+    [SerializeField] private float tempoAntecipacao = 0.5f; 
     [SerializeField] private float tempoFade = 0.5f;   
     [SerializeField] private bool comecaLigado = true; 
 
@@ -51,9 +51,8 @@ public class FanTimer : MonoBehaviour
             
             if(_animator != null) 
             {
-                // FORÇA BRUTA: Se estiver sempre ligado, toca o Spin direto
-                // ignorando transições pra não travar.
-                _animator.Play("Fan_Spin"); 
+                // CORRIGIDO: Nome exato "fanSpin"
+                _animator.Play("fanSpin"); 
                 _animator.SetBool("Ligado", true);
             }
         }
@@ -85,14 +84,18 @@ public class FanTimer : MonoBehaviour
         {
             SetAlpha(opacidadeMaxima);
             _windCollider.enabled = true;
-            if(_animator != null) _animator.Play("Fan_Spin"); // Começa girando
+            
+            // CORRIGIDO: Nome exato "fanSpin"
+            if(_animator != null) _animator.Play("fanSpin"); 
             if(_animator != null) _animator.SetBool("Ligado", true);
         }
         else
         {
             SetAlpha(opacidadeMinima);
             _windCollider.enabled = false;
-            if(_animator != null) _animator.Play("Fan_Idle"); // Começa parado
+            
+            // CORRIGIDO: Nome exato "fanIdle"
+            if(_animator != null) _animator.Play("fanIdle"); 
             if(_animator != null) _animator.SetBool("Ligado", false);
         }
 
@@ -101,32 +104,28 @@ public class FanTimer : MonoBehaviour
             // Espera o tempo do ciclo ATUAL
             yield return new WaitForSeconds(tempoTroca);
 
-            // Inverte o estado (decide o que vai fazer a seguir)
+            // Inverte o estado
             estadoAtual = !estadoAtual;
 
             if (estadoAtual) 
             {
                 // === VAI LIGAR ===
-                // 1. Liga Animação (Aviso)
                 if(_animator != null) _animator.SetBool("Ligado", true);
 
-                // 2. Espera a Antecipação (0.5s)
+                // Espera a animação pegar embalo
                 yield return new WaitForSeconds(tempoAntecipacao);
 
-                // 3. Liga o Vento de fato
                 _windCollider.enabled = true; 
                 yield return StartCoroutine(FadeRoutine(opacidadeMinima, opacidadeMaxima));
             }
             else 
             {
                 // === VAI DESLIGAR ===
-                // 1. Desliga Animação (Aviso que vai parar)
                 if(_animator != null) _animator.SetBool("Ligado", false);
 
-                // 2. Espera a Antecipação (0.5s)
+                // Espera um pouco antes de sumir o vento
                 yield return new WaitForSeconds(tempoAntecipacao);
 
-                // 3. Desliga o Vento de fato
                 _windCollider.enabled = false; 
                 yield return StartCoroutine(FadeRoutine(opacidadeMaxima, opacidadeMinima));
             }

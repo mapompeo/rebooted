@@ -1,10 +1,124 @@
 fileFormatVersion: 2
-guid: ef30ccc9045b07f44884c70c046c56f6
+guid: dddf47218d924c54e80c7d8166cc4372
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6147777685625707044
-    second: Fan_0
+      213: 4578591244471777430
+    second: Wind_0
+  - first:
+      213: -1387331921383137420
+    second: Wind_1
+  - first:
+      213: 1714587572013046209
+    second: Wind_2
+  - first:
+      213: 4418870476218435729
+    second: Wind_3
+  - first:
+      213: 7144953509852361976
+    second: Wind_4
+  - first:
+      213: -4360064557889419803
+    second: Wind_5
+  - first:
+      213: -3384560776525063741
+    second: Wind_6
+  - first:
+      213: 1908295033650543132
+    second: Wind_7
+  - first:
+      213: -6242126359890753430
+    second: Wind_8
+  - first:
+      213: -4686330269285204752
+    second: Wind_9
+  - first:
+      213: 4636766719792352285
+    second: Wind_10
+  - first:
+      213: 1306861884371086677
+    second: Wind_11
+  - first:
+      213: -6588463109411075625
+    second: Wind_12
+  - first:
+      213: -6459603976513062902
+    second: Wind_13
+  - first:
+      213: 7429867186273893828
+    second: Wind_14
+  - first:
+      213: -596401624086476619
+    second: Wind_15
+  - first:
+      213: 3958146235154164416
+    second: Wind_16
+  - first:
+      213: -5318620233609212398
+    second: Wind_17
+  - first:
+      213: 5919534474185169546
+    second: Wind_18
+  - first:
+      213: 5154065571165960156
+    second: Wind_19
+  - first:
+      213: 8323941532536421820
+    second: Wind_20
+  - first:
+      213: -3955605961659822671
+    second: Wind_21
+  - first:
+      213: -2321546874110233106
+    second: Wind_22
+  - first:
+      213: -4381627510968852167
+    second: Wind_23
+  - first:
+      213: 5310082707993304242
+    second: Wind_24
+  - first:
+      213: 7533345019395147265
+    second: Wind_25
+  - first:
+      213: -8373641956222886020
+    second: Wind_26
+  - first:
+      213: -5366037113081466876
+    second: Wind_27
+  - first:
+      213: 213396487812744326
+    second: Wind_28
+  - first:
+      213: 3023976370542859881
+    second: Wind_29
+  - first:
+      213: 7934373464854847818
+    second: Wind_30
+  - first:
+      213: -7452030055174673962
+    second: Wind_31
+  - first:
+      213: -8135780094828291771
+    second: Wind_32
+  - first:
+      213: -3055165702254576686
+    second: Wind_33
+  - first:
+      213: -7563212302530378475
+    second: Wind_34
+  - first:
+      213: -341160901807054418
+    second: Wind_35
+  - first:
+      213: -2923690172772324951
+    second: Wind_36
+  - first:
+      213: 8866803067639262825
+    second: Wind_37
+  - first:
+      213: -2799563964734330952
+    second: Wind_38
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +151,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +189,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +227,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fan_0
+      name: Wind_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
+        y: 320
         width: 192
-        height: 64
+        height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,64 +242,64 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 42a1bc59b3b415550800000000000000
-      internalID: 6147777685625707044
+      spriteID: 698347a7a7c6a8f30800000000000000
+      internalID: 4578591244471777430
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fan_1
+      name: Wind_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 192
+        y: 320
         width: 192
-        height: 64
+        height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 9d297b257ee76f746820df98f0f0517c
-      internalID: -793560509
+      spriteID: 47fd568c7f43fbce0800000000000000
+      internalID: -1387331921383137420
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fan_2
+      name: Wind_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 384
+        y: 320
         width: 192
-        height: 64
+        height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: bc758eeba04856b48bc4664428878a7a
-      internalID: -270288153
+      spriteID: 1c9132eff407bc710800000000000000
+      internalID: 1714587572013046209
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fan_3
+      name: Wind_3
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 192
-        height: 64
+        height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,8 +308,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e3ede81ce3c1914e84e2ba6d70c70b5
-      internalID: 748690455
+      spriteID: 0ddad24ba02cebc44bc8d12a3652cd88
+      internalID: 4418870476218435729
       vertices: []
       indices: 
       edges: []
@@ -204,7 +318,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0385952c7e932114486df7b7d639c2aa
+    spriteID: aebf76330cab4324a86c2aa517730031
     internalID: 0
     vertices: []
     indices: 
@@ -214,10 +328,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Fan_0: 6147777685625707044
-      Fan_1: -793560509
-      Fan_2: -270288153
-      Fan_3: 748690455
+      Wind_0: 4578591244471777430
+      Wind_1: -1387331921383137420
+      Wind_2: 1714587572013046209
+      Wind_3: 4418870476218435729
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
