@@ -201,6 +201,22 @@ PrefabInstance:
     m_TransformParent: {fileID: 676782487}
     m_Modifications:
     - target: {fileID: 825230044721666034, guid: 2643033ce2c1bd24ba02fc9b12b3a493, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825230044721666034, guid: 2643033ce2c1bd24ba02fc9b12b3a493, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 825230044721666034, guid: 2643033ce2c1bd24ba02fc9b12b3a493, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 825230044721666034, guid: 2643033ce2c1bd24ba02fc9b12b3a493, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 825230044721666034, guid: 2643033ce2c1bd24ba02fc9b12b3a493, type: 3}
       propertyPath: m_TileAssetArray.Array.size
       value: 4
       objectReference: {fileID: 0}
