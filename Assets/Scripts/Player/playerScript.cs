@@ -42,33 +42,43 @@ public class playerScript : MonoBehaviour
         float moveInput = Input.GetAxisRaw("Horizontal");
         float velocidadeAtualX = _rb2D.linearVelocity.x;
 
+        // Verifica se está mais rápido que o normal (Vento ou Imprecisão matemática)
         bool estaNoEmbalo = Mathf.Abs(velocidadeAtualX) > moveSpeed;
 
         if (estaNoEmbalo)
         {
-            // Pergunta: Estou tentando ir para o MESMO lado que o vento me joga?
+            // === ZONA DE ALTA VELOCIDADE ===
+            
             bool mesmaDirecao = Mathf.Sign(moveInput) == Mathf.Sign(velocidadeAtualX);
 
             if (moveInput != 0 && mesmaDirecao)
             {
-                 // A favor do vento: deixa levar.
+                 // A favor do movimento: não atrapalha, deixa fluir
             }
             else if (moveInput != 0 && !mesmaDirecao)
             {
-                 // Contra o vento (Frear):
-                 // DICA: Se "1f" estiver muito fraco pra frear, aumente para 30f ou 40f
-                 _rb2D.AddForce(new Vector2(moveInput * 1f, 0)); 
+                 // Contra o movimento: Freio de emergência (AddForce)
+                 _rb2D.AddForce(new Vector2(moveInput * 30f, 0)); // Aumentei pra 30f pra ficar responsivo
+            }
+            // --- NOVO: SE SOLTAR A TECLA, APLICA ATRITO ---
+            else if (moveInput == 0)
+            {
+                // Multiplica a velocidade atual por 0.95 a cada frame.
+                // Isso cria um desaceleramento suave (drag) sem travar a gravidade.
+                // Quanto menor o numero (ex: 0.90), mais rapido ele para.
+                _rb2D.linearVelocity = new Vector2(velocidadeAtualX * 0.95f, _rb2D.linearVelocity.y);
             }
         }
         else
         {
-            // === ZONA DE CONTROLE NORMAL ===
+            // === ZONA DE CONTROLE NORMAL (CHÃO/DEVAGAR) ===
             if (moveInput != 0)
             {
                 _rb2D.linearVelocity = new Vector2(moveInput * moveSpeed, _rb2D.linearVelocity.y);
             }
             else
             {
+                // Freio seco quando está numa velocidade normal
                 _rb2D.linearVelocity = new Vector2(0, _rb2D.linearVelocity.y);
             }
         }
