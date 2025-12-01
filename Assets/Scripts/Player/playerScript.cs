@@ -129,5 +129,14 @@ public class playerScript : MonoBehaviour
             int proximaCena = SceneManager.GetActiveScene().buildIndex + 1;
             SceneManager.LoadScene(proximaCena);
         }
+        else if (collision.CompareTag("BacktoMenu"))
+        {
+            SceneManager.LoadScene("menu");
+        }
+        
+        else if (collision.CompareTag("MemoryAdress"))
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }
