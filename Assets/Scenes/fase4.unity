@@ -242,6 +242,14 @@ PrefabInstance:
       value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
+      propertyPath: velocidadeMax
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
+      propertyPath: velocidadeMin
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
       propertyPath: direcaoMovimento
       value: 1
       objectReference: {fileID: 0}
@@ -317,6 +325,14 @@ PrefabInstance:
     - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
       propertyPath: variacaoMin
       value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
+      propertyPath: velocidadeMax
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
+      propertyPath: velocidadeMin
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
       propertyPath: limiteParaResetar
@@ -9264,6 +9280,14 @@ PrefabInstance:
       value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
+      propertyPath: velocidadeMax
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
+      propertyPath: velocidadeMin
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
       propertyPath: direcaoMovimento
       value: 1
       objectReference: {fileID: 0}
@@ -9438,6 +9462,14 @@ PrefabInstance:
       value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
+      propertyPath: velocidadeMax
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
+      propertyPath: velocidadeMin
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
       propertyPath: limiteParaResetar
       value: -30
       objectReference: {fileID: 0}
@@ -9509,6 +9541,14 @@ PrefabInstance:
     - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
       propertyPath: variacaoMin
       value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
+      propertyPath: velocidadeMax
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
+      propertyPath: velocidadeMin
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
       propertyPath: limiteParaResetar
@@ -9645,6 +9685,14 @@ PrefabInstance:
       value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
+      propertyPath: velocidadeMax
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
+      propertyPath: velocidadeMin
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
       propertyPath: limiteParaResetar
       value: -30
       objectReference: {fileID: 0}
@@ -9738,16 +9786,20 @@ PrefabInstance:
       value: 92
       objectReference: {fileID: 0}
     - target: {fileID: 825230044721666034, guid: 2643033ce2c1bd24ba02fc9b12b3a493, type: 3}
-      propertyPath: m_Color.b
-      value: 0.96852136
-      objectReference: {fileID: 0}
-    - target: {fileID: 825230044721666034, guid: 2643033ce2c1bd24ba02fc9b12b3a493, type: 3}
-      propertyPath: m_Color.g
+      propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 825230044721666034, guid: 2643033ce2c1bd24ba02fc9b12b3a493, type: 3}
+      propertyPath: m_Color.b
+      value: 0.4433962
+      objectReference: {fileID: 0}
+    - target: {fileID: 825230044721666034, guid: 2643033ce2c1bd24ba02fc9b12b3a493, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4433962
+      objectReference: {fileID: 0}
+    - target: {fileID: 825230044721666034, guid: 2643033ce2c1bd24ba02fc9b12b3a493, type: 3}
       propertyPath: m_Color.r
-      value: 0.7311321
+      value: 0.4433962
       objectReference: {fileID: 0}
     - target: {fileID: 825230044721666034, guid: 2643033ce2c1bd24ba02fc9b12b3a493, type: 3}
       propertyPath: m_Origin.x
@@ -222430,6 +222482,14 @@ PrefabInstance:
       value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
+      propertyPath: velocidadeMax
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
+      propertyPath: velocidadeMin
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
       propertyPath: direcaoMovimento
       value: 1
       objectReference: {fileID: 0}
@@ -222571,6 +222631,14 @@ PrefabInstance:
       value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
+      propertyPath: velocidadeMax
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
+      propertyPath: velocidadeMin
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
       propertyPath: direcaoMovimento
       value: 1
       objectReference: {fileID: 0}
@@ -222638,6 +222706,14 @@ PrefabInstance:
     - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
       propertyPath: velocidade
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
+      propertyPath: velocidadeMax
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
+      propertyPath: velocidadeMin
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3629274066792727771, guid: c8c75831593150747bc931916104978f, type: 3}
       propertyPath: limiteParaResetar

@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class RamProjectile : MonoBehaviour
 {
-    // Cria um menu de opções no Inspector
     public enum Direcao { Esquerda, Direita, Baixo, Cima }
 
     [Header("Movimento")]
-    [SerializeField] private float velocidade = 5f;
-    [SerializeField] private Direcao direcaoMovimento = Direcao.Esquerda; // Escolha a direção aqui
+    [Tooltip("Velocidade Mínima")]
+    [SerializeField] private float velocidadeMin = 4f; 
+    [Tooltip("Velocidade Máxima")]
+    [SerializeField] private float velocidadeMax = 8f;
+    
+    [SerializeField] private Direcao direcaoMovimento = Direcao.Esquerda;
 
     [Header("Limites (Onde ele volta)")]
     [Tooltip("A coordenada X ou Y onde ele 'morre'. Ex: Se for pra Direita, coloque um valor X positivo alto.")]
@@ -19,16 +22,24 @@ public class RamProjectile : MonoBehaviour
     [SerializeField] private float variacaoMax = 2f;
 
     private Vector3 _posicaoInicial;
+    private float _velocidadeAtual; // Variável interna para guardar a velocidade sorteada
 
     private void Start()
     {
         _posicaoInicial = transform.position;
+        // Já começa com uma velocidade aleatória
+        SortearVelocidade();
     }
 
     private void Update()
     {
         Mover();
         ChecarLimite();
+    }
+
+    private void SortearVelocidade()
+    {
+        _velocidadeAtual = Random.Range(velocidadeMin, velocidadeMax);
     }
 
     private void Mover()
@@ -43,7 +54,8 @@ public class RamProjectile : MonoBehaviour
             case Direcao.Cima:     vetorDirecao = Vector3.up; break;
         }
 
-        transform.Translate(vetorDirecao * velocidade * Time.deltaTime);
+        // Usa a velocidade sorteada
+        transform.Translate(vetorDirecao * _velocidadeAtual * Time.deltaTime);
     }
 
     private void ChecarLimite()
@@ -52,15 +64,12 @@ public class RamProjectile : MonoBehaviour
 
         switch (direcaoMovimento)
         {
-            // Se vai pra Esquerda/Baixo, reseta se ficar MENOR que o limite
             case Direcao.Esquerda:
                 passouDoLimite = transform.position.x < limiteParaResetar;
                 break;
             case Direcao.Baixo:
                 passouDoLimite = transform.position.y < limiteParaResetar;
                 break;
-
-            // Se vai pra Direita/Cima, reseta se ficar MAIOR que o limite
             case Direcao.Direita:
                 passouDoLimite = transform.position.x > limiteParaResetar;
                 break;
@@ -78,20 +87,22 @@ public class RamProjectile : MonoBehaviour
     private void ResetarPosicao()
     {
         Vector3 novaPosicao = _posicaoInicial;
-        float aleatorio = Random.Range(variacaoMin, variacaoMax);
+        float aleatorioPosicao = Random.Range(variacaoMin, variacaoMax);
 
-        // Se o movimento é Horizontal, a gente varia a Altura (Y)
+        // Variação de Posição
         if (direcaoMovimento == Direcao.Esquerda || direcaoMovimento == Direcao.Direita)
         {
-            novaPosicao.y += aleatorio;
+            novaPosicao.y += aleatorioPosicao;
         }
-        // Se o movimento é Vertical, a gente varia a Lateral (X)
         else
         {
-            novaPosicao.x += aleatorio;
+            novaPosicao.x += aleatorioPosicao;
         }
 
         transform.position = novaPosicao;
+        
+        // Variação de Velocidade (Sorteia de novo para a próxima passagem)
+        SortearVelocidade();
     }
 
     private void OnDrawGizmos()
@@ -99,22 +110,15 @@ public class RamProjectile : MonoBehaviour
         Gizmos.color = Color.red;
         Vector3 centro = Application.isPlaying ? _posicaoInicial : transform.position;
 
-        // Desenha a linha de limite dependendo da direção escolhida
         if (direcaoMovimento == Direcao.Esquerda || direcaoMovimento == Direcao.Direita)
         {
-            // Limite Vertical (Parede)
             Gizmos.DrawLine(new Vector3(limiteParaResetar, -100, 0), new Vector3(limiteParaResetar, 100, 0));
-            
-            // Onde nasce (Verde)
             Gizmos.color = Color.green;
             Gizmos.DrawLine(centro + Vector3.up * variacaoMin, centro + Vector3.up * variacaoMax);
         }
         else
         {
-            // Limite Horizontal (Chão/Teto)
             Gizmos.DrawLine(new Vector3(-100, limiteParaResetar, 0), new Vector3(100, limiteParaResetar, 0));
-            
-            // Onde nasce (Verde)
             Gizmos.color = Color.green;
             Gizmos.DrawLine(centro + Vector3.right * variacaoMin, centro + Vector3.right * variacaoMax);
         }
