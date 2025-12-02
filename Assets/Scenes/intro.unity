@@ -247,7 +247,7 @@ MonoBehaviour:
   m_text: "Voce e uma Variavel \"player\" de um sistema, porem, infelizmente o seu
     endereco de memoria foi perdido. \n\nSeu objetivo agora, e se aventurar pelo
     computador, passando pelos fan, disco rigido, fonte de energia, e por fim vencer
-    a fase da cpu, para achar o seu ponteiro"
+    a fase da memoria ram, para achar o seu ponteiro"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}

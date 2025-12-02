@@ -35024,11 +35024,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4649860210058451816, guid: 66f7763c72b1fcb4ea016b06120684ec, type: 3}
       propertyPath: tempoFade
-      value: 1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4649860210058451816, guid: 66f7763c72b1fcb4ea016b06120684ec, type: 3}
       propertyPath: comecaLigado
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649860210058451816, guid: 66f7763c72b1fcb4ea016b06120684ec, type: 3}
+      propertyPath: opacidadeMaxima
+      value: 0.87
       objectReference: {fileID: 0}
     - target: {fileID: 4649860210058451816, guid: 66f7763c72b1fcb4ea016b06120684ec, type: 3}
       propertyPath: tempoAntecipacao
@@ -35169,7 +35173,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4649860210058451816, guid: 66f7763c72b1fcb4ea016b06120684ec, type: 3}
       propertyPath: tempoFade
-      value: 1
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649860210058451816, guid: 66f7763c72b1fcb4ea016b06120684ec, type: 3}
+      propertyPath: opacidadeMaxima
+      value: 0.87
       objectReference: {fileID: 0}
     - target: {fileID: 4649860210058451816, guid: 66f7763c72b1fcb4ea016b06120684ec, type: 3}
       propertyPath: tempoAntecipacao
@@ -35951,7 +35959,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4649860210058451816, guid: 66f7763c72b1fcb4ea016b06120684ec, type: 3}
       propertyPath: tempoFade
-      value: 1
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649860210058451816, guid: 66f7763c72b1fcb4ea016b06120684ec, type: 3}
+      propertyPath: opacidadeMaxima
+      value: 0.87
       objectReference: {fileID: 0}
     - target: {fileID: 4649860210058451816, guid: 66f7763c72b1fcb4ea016b06120684ec, type: 3}
       propertyPath: tempoAntecipacao
