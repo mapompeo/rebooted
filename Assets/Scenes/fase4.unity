@@ -2278,9 +2278,9 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 984253730000561030, guid: 3dc80e32d4659ba48b9c69c81255d6b5, type: 3}
       propertyPath: m_text
-      value: 'Fase 4
+      value: 'Fase Final
 
-        CPU COre'
+        Memoria RAM'
       objectReference: {fileID: 0}
     - target: {fileID: 4842748082432392896, guid: 3dc80e32d4659ba48b9c69c81255d6b5, type: 3}
       propertyPath: m_Name
