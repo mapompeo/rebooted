@@ -66,7 +66,6 @@ public class CapacitorWalk : MonoBehaviour
             if (bateuNaParede || bateuNoPerigo)
             {
                 Virar();
-                return; // se ja virou, nao precisa checar buraco
             }
         }
 
