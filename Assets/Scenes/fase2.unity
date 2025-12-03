@@ -137,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5321989771578869856, guid: 63ab17e4b6ec66e4085193e7caf9492b, type: 3}
       propertyPath: larguraDeteccao
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5321989771578869856, guid: 63ab17e4b6ec66e4085193e7caf9492b, type: 3}
       propertyPath: velocidadeQueda

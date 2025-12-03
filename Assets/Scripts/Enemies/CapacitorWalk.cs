@@ -28,7 +28,6 @@ public class CapacitorWalk : MonoBehaviour
         _direcao = (int)direcaoInicial;
 
         // Se escolheu Direita, já vira o sprite no começo pra não andar de costas
-        // (Assumindo que seu desenho original olha para a Esquerda)
         if (_direcao == 1)
         {
             Vector3 escala = transform.localScale;

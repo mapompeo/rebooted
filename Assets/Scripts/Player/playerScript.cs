@@ -58,7 +58,7 @@ public class playerScript : MonoBehaviour
             else if (moveInput != 0 && !mesmaDirecao)
             {
                  // Contra o movimento: Freio de emergência (AddForce)
-                 _rb2D.AddForce(new Vector2(moveInput * 30f, 0)); // Aumentei pra 30f pra ficar responsivo
+                 _rb2D.AddForce(new Vector2(moveInput * 3f, 0)); // Aumentei pra 30f pra ficar responsivo
             }
             // --- NOVO: SE SOLTAR A TECLA, APLICA ATRITO ---
             else if (moveInput == 0)
