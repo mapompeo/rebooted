@@ -2,24 +2,23 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform player;       // O alvo (seu boneco)
-    public float smoothSpeed = 0.005f;  // A suavidade do movimento (0 a 1)
-    public Vector3 offset;         // A distância que a câmera mantém
+    public Transform player;       
+    public float smoothSpeed = 0.005f;  // quanto menor, mais suave/atrasada a camera
+    public Vector3 offset;         
 
-    // Usamos LateUpdate porque queremos que a câmera mova SÓ DEPOIS
-    // que o player já tiver terminado de se mexer naquele frame.
-    // Isso evita tremedeira.
+    // usa lateupdate pra camera so mexer DEPOIS que o player terminou o movimento dele
+    // isso evita tremedeira visual
     void LateUpdate()
     {
         if (player != null)
         {
-            // Onde a câmera quer estar (Posição do player + a distância original)
+            // calcula onde a camera quer chegar
             Vector3 desiredPosition = player.position + offset;
 
-            // O Lerp faz ela ir "deslizando" suavemente até lá em vez de teleportar
+            // lerp faz ela ir deslizando suavemente ate la em vez de teleportar
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
 
-            // Aplica a posição
+            // aplica a posicao
             transform.position = smoothedPosition;
         }
     }

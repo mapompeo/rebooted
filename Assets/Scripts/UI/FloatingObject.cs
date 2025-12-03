@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class FloatingObject : MonoBehaviour
 {
-    // Cria a lista de opções para aparecer no Inspector
+    // cria a lista de opcoes pro inspector
     public enum TipoMovimento { Flutuando, Quicando, Parado }
 
     [Header("Configurações")]
-    public TipoMovimento tipo = TipoMovimento.Flutuando; // A opção escolhida
+    public TipoMovimento tipo = TipoMovimento.Flutuando; // a opcao escolhida
     
     public float velocidade = 2f;
     public float distancia = 0.5f;
@@ -22,26 +22,25 @@ public class FloatingObject : MonoBehaviour
     {
         float novoY = _posInicial.y;
 
-        // Verifica qual opção você escolheu na lista
+        // verifica qual movimento foi escolhido
         switch (tipo)
         {
             case TipoMovimento.Parado:
-                // Não faz nada, mantém a posição original
+                // nao faz nada, fica imovel
                 break;
 
             case TipoMovimento.Flutuando:
-                // Onda Suave (-1 até 1): Sobe e desce passando pela origem
+                // usa seno pra fazer uma onda suave que sobe e desce (-1 a 1)
                 novoY += Mathf.Sin(Time.time * velocidade) * distancia;
                 break;
 
             case TipoMovimento.Quicando:
-                // Onda de Pulo (0 até 1): O Mathf.Abs transforma números negativos em positivos.
-                // Visualmente, parece que a seta bate no chão e sobe de novo.
+                // usa seno absoluto (sem numeros negativos) pra parecer um quique (0 a 1)
                 novoY += Mathf.Abs(Mathf.Sin(Time.time * velocidade)) * distancia;
                 break;
         }
 
-        // Aplica a nova altura
+        // aplica a nova posicao calculada
         transform.position = new Vector3(transform.position.x, novoY, transform.position.z);
     }
 }

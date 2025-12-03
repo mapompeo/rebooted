@@ -12,12 +12,11 @@ public class DiskMovement : MonoBehaviour
     [Tooltip("Distância total que ele anda para cima/baixo")]
     [SerializeField] private float distanciaY = 0f;    
 
-    // Variável interna para lembrar onde ele começou
     private Vector3 _posicaoInicial;
 
     private void Start()
     {
-        // Guarda a posição inicial como ponto central (âncora)
+        // salva a posicao inicial pra usar de ancora pro movimento
         _posicaoInicial = transform.position;
     }
 
@@ -28,15 +27,14 @@ public class DiskMovement : MonoBehaviour
 
     private void MoverObjeto()
     {
-        // Mathf.Sin cria uma onda que vai de -1 a 1 suavemente baseado no tempo
-        // Multiplicando pelo tempo, criamos o ritmo de vai-e-vem
+        // mathf.sin cria uma onda suave de -1 a 1 baseada no tempo
         float oscilacao = Mathf.Sin(Time.time * velocidadeMovimento);
 
-        // Calcula a nova posição somando o deslocamento à posição original
+        // calcula a nova posicao baseada na oscilacao
         float novoX = _posicaoInicial.x + (oscilacao * distanciaX);
         float novoY = _posicaoInicial.y + (oscilacao * distanciaY);
 
-        // Aplica ao objeto
+        // aplica a nova posicao ao objeto
         transform.position = new Vector3(novoX, novoY, _posicaoInicial.z);
     }
 }

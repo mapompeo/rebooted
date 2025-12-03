@@ -5,9 +5,7 @@ public class MenuController : MonoBehaviour
 {
     public void IniciarJogo()
     {
-        
+        // carrega a cena de introducao
         SceneManager.LoadScene("intro");
     }
-
-    
 }

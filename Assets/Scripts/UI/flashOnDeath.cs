@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI; // 1. IMPORTANTE: Adicionei isso pra mexer com Imagem
+using UnityEngine.UI;
 
 public class FlashEffect : MonoBehaviour
 {
@@ -23,37 +23,36 @@ public class FlashEffect : MonoBehaviour
 
     public void TriggerFlash()
     {
-        StopAllCoroutines(); // Para flashs anteriores
+        StopAllCoroutines(); // Para os flashs anteriores
         StartCoroutine(DoFadeOutRoutine());
     }
 
     private IEnumerator DoFadeOutRoutine()
     {
-        // 1. Começo do Flash: Liga o painel e deixa totalmente branco
+        // ativa o painel branco na tela
         whitePanelImage.gameObject.SetActive(true);
         SetAlpha(1f);
 
-        // 2. Loop do Fade Out: Vai diminuindo a transparência aos poucos
+        // loop pra ir diminuindo a transparencia aos poucos
         float timer = 0f;
         while (timer < fadeDuration)
         {
-            // Conta o tempo
             timer += Time.deltaTime;
             
-            // Calcula a nova transparência (de 1 até 0) baseada no tempo que passou
+            // calcula quanto de transparencia tem que ter agora baseado no tempo que passou
             float novaTransparencia = Mathf.Lerp(1f, 0f, timer / fadeDuration);
             SetAlpha(novaTransparencia);
 
-            // Espera até o próximo frame para continuar o loop
+            // pausa aqui e continua no proximo frame pra dar o efeito visual suave
             yield return null; 
         }
 
-        // 3. Fim do Flash: Garante que ficou transparente e desliga o objeto
+        // garante que ficou 100% transparente e desliga o objeto pra economizar
         SetAlpha(0f);
         whitePanelImage.gameObject.SetActive(false);
     }
 
-    // Funçãozinha auxiliar só para facilitar mudar o Alpha
+    // funçãozinha auxiliar só para facilitar mudar o Alpha
     private void SetAlpha(float alpha)
     {
         Color corAtual = whitePanelImage.color;

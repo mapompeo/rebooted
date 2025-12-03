@@ -32,6 +32,7 @@ public class FanTimer : MonoBehaviour
         _posicaoInicial = transform.position;
         _animator = GetComponent<Animator>();
 
+        // procura o objeto filho 'wind' automaticamente
         Transform windChild = transform.Find("Wind");
         if (windChild != null)
         {
@@ -46,18 +47,19 @@ public class FanTimer : MonoBehaviour
 
         if (sempreLigado)
         {
+            // se for sempre ligado, define maximo e toca animacao diretamente
             SetAlpha(opacidadeMaxima);
             _windCollider.enabled = true;
             
             if(_animator != null) 
             {
-                // CORRIGIDO: Nome exato "fanSpin"
                 _animator.Play("fanSpin"); 
                 _animator.SetBool("Ligado", true);
             }
         }
         else
         {
+            // senao, inicia o ciclo do temporizador
             StartCoroutine(CicloVento());
         }
     }
@@ -69,6 +71,7 @@ public class FanTimer : MonoBehaviour
 
     private void MoverObjeto()
     {
+        // movimento de onda (vai e volta) usando seno
         float oscilacao = Mathf.Sin(Time.time * velocidadeMovimento);
         float novoX = _posicaoInicial.x + (oscilacao * distanciaX);
         float novoY = _posicaoInicial.y + (oscilacao * distanciaY);
@@ -79,13 +82,12 @@ public class FanTimer : MonoBehaviour
     {
         bool estadoAtual = comecaLigado;
 
-        // --- CONFIGURAÇÃO INICIAL (Sem delay) ---
+        // configuracao inicial (sem animacao de fade)
         if (estadoAtual)
         {
             SetAlpha(opacidadeMaxima);
             _windCollider.enabled = true;
             
-            // CORRIGIDO: Nome exato "fanSpin"
             if(_animator != null) _animator.Play("fanSpin"); 
             if(_animator != null) _animator.SetBool("Ligado", true);
         }
@@ -94,50 +96,54 @@ public class FanTimer : MonoBehaviour
             SetAlpha(opacidadeMinima);
             _windCollider.enabled = false;
             
-            // CORRIGIDO: Nome exato "fanIdle"
             if(_animator != null) _animator.Play("fanIdle"); 
             if(_animator != null) _animator.SetBool("Ligado", false);
         }
 
         while (true)
         {
-            // Espera o tempo do ciclo ATUAL
+            // espera o tempo definido para o estado atual
             yield return new WaitForSeconds(tempoTroca);
 
-            // Inverte o estado
             estadoAtual = !estadoAtual;
 
             if (estadoAtual) 
             {
-                // === VAI LIGAR ===
+                // === hora de ligar ===
+                // 1. notifica o animator
                 if(_animator != null) _animator.SetBool("Ligado", true);
 
-                // Espera a animação pegar embalo
+                // 2. espera um tempo para a animacao iniciar
                 yield return new WaitForSeconds(tempoAntecipacao);
 
+                // 3. ativa a fisica e inicia o fade in
                 _windCollider.enabled = true; 
                 yield return StartCoroutine(FadeRoutine(opacidadeMinima, opacidadeMaxima));
             }
             else 
             {
-                // === VAI DESLIGAR ===
+                // === hora de desligar ===
+                // 1. notifica o animator
                 if(_animator != null) _animator.SetBool("Ligado", false);
 
-                // Espera um pouco antes de sumir o vento
+                // 2. espera um tempo
                 yield return new WaitForSeconds(tempoAntecipacao);
 
+                // 3. desativa a fisica e inicia o fade out
                 _windCollider.enabled = false; 
                 yield return StartCoroutine(FadeRoutine(opacidadeMaxima, opacidadeMinima));
             }
         }
     }
 
+    // realiza a transicao suave de opacidade
     private IEnumerator FadeRoutine(float alphaInicial, float alphaFinal)
     {
         float timer = 0f;
         while (timer < tempoFade)
         {
             timer += Time.deltaTime;
+            // lerp calcula a transicao suave de a para b
             float novoAlpha = Mathf.Lerp(alphaInicial, alphaFinal, timer / tempoFade);
             SetAlpha(novoAlpha);
             yield return null;

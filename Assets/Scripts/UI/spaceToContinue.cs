@@ -7,10 +7,8 @@ public class spaceToContinue : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // Pega o índice da cena atual e soma 1
+            // pega o indice da cena atual, soma 1 e carrega a proxima
             int proximaCena = SceneManager.GetActiveScene().buildIndex + 1;
-            
-            // Carrega imediatamente
             SceneManager.LoadScene(proximaCena);
         }
     }

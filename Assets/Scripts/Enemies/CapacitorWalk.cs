@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class CapacitorWalk : MonoBehaviour
 {
-    // Criei esse "Tipo" novo só pra aparecer bonitinho no Inspector
+    // cria esse enum pra facilitar a escolha no inspector
     public enum Direcao { Esquerda = -1, Direita = 1 }
 
     [Header("Configurações de Movimento")]
     [SerializeField] private float velocidade = 3f;
-    [SerializeField] private Direcao direcaoInicial = Direcao.Esquerda; // Escolha aqui
+    [SerializeField] private Direcao direcaoInicial = Direcao.Esquerda; 
     
     [Header("Comportamento")]
-    [Tooltip("Se marcado, o inimigo cai nos buracos. Se desmarcado, ele volta.")]
+    // se marcar isso aqui, o inimigo nao liga de cair no void
     [SerializeField] private bool podeCair = true; 
 
     [Header("Sensores")]
@@ -24,55 +24,59 @@ public class CapacitorWalk : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         
-        // Configura a direção inicial baseada no que você escolheu no Inspector
+        // pega o valor int (-1 ou 1) do enum escolhido no inspector
         _direcao = (int)direcaoInicial;
 
-        // Se escolheu Direita, já vira o sprite no começo pra não andar de costas
+        // se escolher comecar pra direita, vira o sprite para nao andar de costas
         if (_direcao == 1)
         {
             Vector3 escala = transform.localScale;
-            escala.x = Mathf.Abs(escala.x) * -1; // Força virar pra direita
+            escala.x = Mathf.Abs(escala.x) * -1; 
             transform.localScale = escala;
         }
         else
         {
             Vector3 escala = transform.localScale;
-            escala.x = Mathf.Abs(escala.x); // Força virar pra esquerda (padrão)
+            escala.x = Mathf.Abs(escala.x); 
             transform.localScale = escala;
         }
     }
 
     private void FixedUpdate()
     {
+        // movimenta o objeto mexendo na fisica
         _rb.linearVelocity = new Vector2(velocidade * _direcao, _rb.linearVelocity.y);
     }
 
     private void Update()
     {
-        // 1. Detecta Obstáculos na Frente (Parede ou Kill)
+        // solta um raio invisivel pra frente pra detectar colisoes
         RaycastHit2D hitFrente = Physics2D.Raycast(verificadorParede.position, Vector2.right * _direcao, 0.1f);
 
         if (hitFrente.collider != null)
         {
+            // ignora se o raio bater no proprio colisor
             if (hitFrente.collider.gameObject == gameObject) return;
 
+            // calculo bitwise pra verificar se o objeto esta na layer de parede
             bool bateuNaParede = (layerParede.value & (1 << hitFrente.collider.gameObject.layer)) > 0;
+            // ou se bateu em algo que mata
             bool bateuNoPerigo = hitFrente.collider.CompareTag("Kill");
 
             if (bateuNaParede || bateuNoPerigo)
             {
                 Virar();
-                return; // Se já virou por parede, não precisa checar buraco
+                return; // se ja virou, nao precisa checar buraco
             }
         }
 
-        // 2. Detecta Buraco (Se NÃO puder cair)
+        // se nao puder cair, checa o chao
         if (!podeCair)
         {
-            // Lança um raio para BAIXO a partir do "nariz" do inimigo
+            // raio pra baixo a partir da frente do objeto
             RaycastHit2D hitChao = Physics2D.Raycast(verificadorParede.position, Vector2.down, 0.5f, layerParede);
 
-            // Se o raio NÃO bater em nada (null), significa que tem um buraco na frente
+            // se nao bateu em nada (null), e buraco, entao volta
             if (hitChao.collider == null)
             {
                 Virar();
@@ -82,8 +86,9 @@ public class CapacitorWalk : MonoBehaviour
 
     private void Virar()
     {
-        _direcao *= -1; 
+        _direcao *= -1; // inverte o valor matematico (-1 vira 1 e vice versa)
         
+        // espelha o sprite visualmente
         Vector3 escala = transform.localScale;
         escala.x *= -1;
         transform.localScale = escala;
@@ -93,11 +98,10 @@ public class CapacitorWalk : MonoBehaviour
     {
         if (verificadorParede != null)
         {
-            // Raio da Parede (Azul)
+            // desenha as linhas no editor pra ajudar no ajuste
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(verificadorParede.position, verificadorParede.position + Vector3.right * _direcao * 0.1f);
 
-            // Raio do Buraco (Vermelho) - Só desenha se não puder cair
             if (!podeCair)
             {
                 Gizmos.color = Color.red;

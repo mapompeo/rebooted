@@ -13,21 +13,21 @@ public class RamProjectile : MonoBehaviour
     [SerializeField] private Direcao direcaoMovimento = Direcao.Esquerda;
 
     [Header("Limites (Onde ele volta)")]
-    [Tooltip("A coordenada X ou Y onde ele 'morre'. Ex: Se for pra Direita, coloque um valor X positivo alto.")]
+    // ponto onde o objeto e resetado pro inicio
     [SerializeField] private float limiteParaResetar = -10f;
 
     [Header("Aleatoriedade (Ao Resetar)")]
-    [Tooltip("Variação da posição no eixo contrário (Ex: Se anda na horizontal, varia a altura Y)")]
+    // varia a posicao inicial pra nao nascer sempre no mesmo lugar
     [SerializeField] private float variacaoMin = -2f;
     [SerializeField] private float variacaoMax = 2f;
 
     private Vector3 _posicaoInicial;
-    private float _velocidadeAtual; // Variável interna para guardar a velocidade sorteada
+    private float _velocidadeAtual; 
 
     private void Start()
     {
         _posicaoInicial = transform.position;
-        // Já começa com uma velocidade aleatória
+        // sorteia uma velocidade no inicio
         SortearVelocidade();
     }
 
@@ -46,6 +46,7 @@ public class RamProjectile : MonoBehaviour
     {
         Vector3 vetorDirecao = Vector3.zero;
 
+        // define a direcao do vetor baseado na escolha do inspector
         switch (direcaoMovimento)
         {
             case Direcao.Esquerda: vetorDirecao = Vector3.left; break;
@@ -54,7 +55,7 @@ public class RamProjectile : MonoBehaviour
             case Direcao.Cima:     vetorDirecao = Vector3.up; break;
         }
 
-        // Usa a velocidade sorteada
+        // move o objeto usando a velocidade sorteada
         transform.Translate(vetorDirecao * _velocidadeAtual * Time.deltaTime);
     }
 
@@ -64,12 +65,14 @@ public class RamProjectile : MonoBehaviour
 
         switch (direcaoMovimento)
         {
+            // se vai pra esquerda/baixo, reseta se o valor ficar menor que o limite
             case Direcao.Esquerda:
                 passouDoLimite = transform.position.x < limiteParaResetar;
                 break;
             case Direcao.Baixo:
                 passouDoLimite = transform.position.y < limiteParaResetar;
                 break;
+            // se vai pra direita/cima, reseta se o valor ficar maior
             case Direcao.Direita:
                 passouDoLimite = transform.position.x > limiteParaResetar;
                 break;
@@ -89,7 +92,7 @@ public class RamProjectile : MonoBehaviour
         Vector3 novaPosicao = _posicaoInicial;
         float aleatorioPosicao = Random.Range(variacaoMin, variacaoMax);
 
-        // Variação de Posição
+        // se anda de lado, varia a altura (y). se cai, varia a lateral (x)
         if (direcaoMovimento == Direcao.Esquerda || direcaoMovimento == Direcao.Direita)
         {
             novaPosicao.y += aleatorioPosicao;
@@ -101,12 +104,13 @@ public class RamProjectile : MonoBehaviour
 
         transform.position = novaPosicao;
         
-        // Variação de Velocidade (Sorteia de novo para a próxima passagem)
+        // sorteia novamente pra proxima passagem ser diferente
         SortearVelocidade();
     }
 
     private void OnDrawGizmos()
     {
+        // desenha as linhas no editor pra visualizar limites e spawn
         Gizmos.color = Color.red;
         Vector3 centro = Application.isPlaying ? _posicaoInicial : transform.position;
 

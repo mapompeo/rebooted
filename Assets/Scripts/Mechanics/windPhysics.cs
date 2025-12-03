@@ -6,19 +6,17 @@ public class WindPhysics : MonoBehaviour
     [SerializeField] private float force = 50f; 
     [SerializeField] private float maxSpeed = 5f; 
 
-    // Variável privada (não aparece no Inspector) para guardar o Pai
     private Transform _fanParent; 
 
     private void Start()
     {
-        // Pega o objeto imediatamente acima na hierarquia (o Fan)
+        // tenta encontrar o objeto pai na hierarquia
         _fanParent = transform.parent;
 
-        // Segurança: Se você colocar esse script num objeto solto sem pai, ele avisa
+        // se o objeto estiver solto, avisa e usa a si mesmo para evitar erros
         if (_fanParent == null)
         {
             Debug.LogError("ERRO: O objeto Wind precisa ser filho de um objeto Fan!");
-            // Se não tiver pai, usa a si mesmo pra não travar o jogo
             _fanParent = transform; 
         }
     }
@@ -31,12 +29,13 @@ public class WindPhysics : MonoBehaviour
 
             if (rb != null)
             {
-                // Usa o "Cima" do Pai (_fanParent) para decidir a direção
-                // Se o Pai girar, o vento gira junto.
+                // pega a direcao "cima" do pai (se o pai girar, o vento gira junto)
                 Vector2 direcaoVento = _fanParent.up;
 
+                // calculo (produto escalar) pra saber a velocidade do player na direcao do vento
                 float velocidadeNaDirecaoDoVento = Vector2.Dot(rb.linearVelocity, direcaoVento);
 
+                // so aplica forca se nao tiver atingido a velocidade maxima
                 if (velocidadeNaDirecaoDoVento < maxSpeed)
                 {
                     rb.AddForce(direcaoVento * force);

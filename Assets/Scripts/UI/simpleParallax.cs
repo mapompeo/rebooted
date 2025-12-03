@@ -5,8 +5,7 @@ public class SimpleParallax : MonoBehaviour
     [Header("Configurações")]
     [SerializeField] private GameObject cam; 
     
-    // 0.5 = Metade da velocidade (Bom para fundo)
-    // 0.9 = Quase parado (Bom para céu muito distante)
+    // 0.5 move na metade da velocidade, 0.9 quase nao sai do lugar (parece longe)
     [Range(0f, 1f)]
     [SerializeField] private float velocidade = 0.5f; 
 
@@ -17,20 +16,20 @@ public class SimpleParallax : MonoBehaviour
     {
         if (cam == null) cam = Camera.main.gameObject;
         
-        // Guarda onde o fundo e a câmera começaram
+        // guarda onde o fundo e a camera comecaram o jogo
         _startPos = transform.position.x;
         _startCamPos = cam.transform.position.x;
     }
 
     void Update()
     {
-        // 1. Quanto a câmera andou desde o começo do jogo?
+        // calcula quanto a camera andou desde o inicio
         float distanciaQueCameraAndou = cam.transform.position.x - _startCamPos;
 
-        // 2. O fundo deve andar apenas uma fração disso (ex: 50%)
+        // calcula onde o fundo deveria estar (anda so uma fração do que a camera andou)
         float novaPosicaoX = _startPos + (distanciaQueCameraAndou * velocidade);
 
-        // 3. Aplica
+        // aplica
         transform.position = new Vector3(novaPosicaoX, transform.position.y, transform.position.z);
     }
 }
