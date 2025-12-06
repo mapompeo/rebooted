@@ -2,7 +2,7 @@
 
 # 💻 Rebooted
 
-<a href="https://rebooted-univali.vercel.app/"><img src="./Assets/Resources/Images/mock.png" height="auto" width="auto"></a>
+<a href="https://naasdd.itch.io/rebooted"><img src="./Assets/Resources/Images/mock.png" height="auto" width="auto"></a>
 
 </div>
 
