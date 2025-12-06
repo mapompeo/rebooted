@@ -109245,4 +109245,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  velocidade: 0.5
+  velocidade: 0.69
