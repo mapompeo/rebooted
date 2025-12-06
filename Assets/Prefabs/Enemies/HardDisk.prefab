@@ -141,6 +141,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   checadorDeChao: {fileID: 2858646848290351989}
+  duracaoShake: 0.3
+  forcaShake: 0.1
   sensivelAoPlayer: 1
   camadaPlayer:
     serializedVersion: 2

@@ -8,6 +8,10 @@ public class HardDiskThwomp : MonoBehaviour
     [SerializeField] private LayerMask camadaChao; // o que e considerado chao para parar
     [SerializeField] private Transform checadorDeChao; // objeto vazio na base
 
+    [Header("Impacto na Câmera")]
+    [SerializeField] private float duracaoShake = 0.2f; // tempo que a tela treme
+    [SerializeField] private float forcaShake = 0.3f;   // forca da tremida
+
     [Header("Modo de Operação")]
     [SerializeField] private bool sensivelAoPlayer = true; // se true, cai quando ve o player. se false, cai por tempo
     
@@ -26,11 +30,18 @@ public class HardDiskThwomp : MonoBehaviour
 
     private Vector3 _posicaoInicial;
     private float _timer;
+    private CameraFollow _cameraScript; // referencia pro script da camera
 
     private void Start()
     {
         _posicaoInicial = transform.position;
         _estadoAtual = Estado.Esperando;
+
+        // encontra a camera principal e pega o script dela automaticamente
+        if (Camera.main != null)
+        {
+            _cameraScript = Camera.main.GetComponent<CameraFollow>();
+        }
 
         // configura o timer inicial dependendo do modo escolhido
         if (!sensivelAoPlayer && comecaCaindo) _timer = intervaloQueda;
@@ -91,6 +102,12 @@ public class HardDiskThwomp : MonoBehaviour
 
         if (tocouChao)
         {
+            // chama a funcao de tremer a tela se a camera existir
+            if (_cameraScript != null)
+            {
+                _cameraScript.TriggerShake(duracaoShake, forcaShake);
+            }
+
             // colidiu, inicia a subida
             _estadoAtual = Estado.Subindo;
         }
